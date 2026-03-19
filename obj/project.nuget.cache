@@ -1,10 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "ohC/pm5tXXA=",
+  "dgSpecHash": "a7YFRkzSwrM=",
   "success": true,
   "projectFilePath": "C:\\Users\\Student\\Projects\\Blazor\\MyFirstAzureWebApp\\MyFirstAzureWebApp.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Student\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.5\\microsoft.aspnetcore.app.internal.assets.10.0.5.nupkg.sha512"
+    "C:\\Users\\Student\\.nuget\\packages\\azure.core\\1.50.0\\azure.core.1.50.0.nupkg.sha512",
+    "C:\\Users\\Student\\.nuget\\packages\\azure.storage.blobs\\12.27.0\\azure.storage.blobs.12.27.0.nupkg.sha512",
+    "C:\\Users\\Student\\.nuget\\packages\\azure.storage.common\\12.26.0\\azure.storage.common.12.26.0.nupkg.sha512",
+    "C:\\Users\\Student\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.5\\microsoft.aspnetcore.app.internal.assets.10.0.5.nupkg.sha512",
+    "C:\\Users\\Student\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\8.0.0\\microsoft.bcl.asyncinterfaces.8.0.0.nupkg.sha512",
+    "C:\\Users\\Student\\.nuget\\packages\\system.clientmodel\\1.8.0\\system.clientmodel.1.8.0.nupkg.sha512",
+    "C:\\Users\\Student\\.nuget\\packages\\system.io.hashing\\10.0.1\\system.io.hashing.10.0.1.nupkg.sha512",
+    "C:\\Users\\Student\\.nuget\\packages\\system.memory.data\\8.0.1\\system.memory.data.8.0.1.nupkg.sha512"
   ],
   "logs": []
 }
