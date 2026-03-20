@@ -2,9 +2,9 @@ using MyFirstAzureWebApp.Components;
 using MyFirstAzureWebApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration
-    .GetConnectionString("AzureStorageAccount");
 
+builder.Logging.AddConsole();
+builder.Logging.SetMinimumLevel(LogLevel.Debug);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
