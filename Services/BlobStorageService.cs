@@ -21,8 +21,8 @@ public class BlobStorageService : IBlobStorageService
         try
         {
             var container = new BlobContainerClient(blobStorageConnectionString, blobContainerName);
-            var createResponse = container.CreateIfNotExistsAsync();
-            if (createResponse.Result != null && createResponse.Result.GetRawResponse().Status == 201)
+            var createResponse = await container.CreateIfNotExistsAsync();
+            if (createResponse != null && createResponse.GetRawResponse().Status == 201)
                 await container.SetAccessPolicyAsync(PublicAccessType.Blob);
             var blobClient = container.GetBlobClient(fileName);
             await blobClient.DeleteIfExistsAsync(DeleteSnapshotsOption.IncludeSnapshots);
