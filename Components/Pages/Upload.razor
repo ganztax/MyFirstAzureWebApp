@@ -2,6 +2,7 @@
 @using MyFirstAzureWebApp.Services.Dto
 @using MyFirstAzureWebApp.Services
 @inject IBlobStorageService BlobStorageService
+@inject ILogger<Upload> Logger
 
 <PageTitle>Upload</PageTitle>
 <h4>File Upload (Azure Blob Storage)</h4>
@@ -75,17 +76,14 @@
 @code {
     private string warningMessage = "";
     private string displayMessage = "";
-    private List<IBrowserFile> loadedFiles = new();
     private long maxFileSize = 1024 * 1024 * 20; // 20MB
-    private int maxAllowedFiles = 3;
     private bool fileLoading;
-    string Message = "No file(s) selected";
-    IReadOnlyList<IBrowserFile> selectedFiles;
+    IReadOnlyList<IBrowserFile> selectedFiles = new List<IBrowserFile>();
     private List<FileUploadViewModel> fileUploadViewModels = new();
     private void OnInputFileChange(InputFileChangeEventArgs e)
     {
         selectedFiles = e.GetMultipleFiles();
-        Message = $"{selectedFiles.Count} file(s) selected";
+        displayMessage = $"{selectedFiles.Count} file(s) selected";
         this.StateHasChanged();
     }
     private async Task OnUploadSubmit()
@@ -95,7 +93,7 @@
             warningMessage = "Please select a file first.";
             return;
         }
-        
+
         fileLoading = true;
         warningMessage = "";
         displayMessage = "";
@@ -124,7 +122,8 @@
             }
             catch (Exception ex)
             {
-                warningMessage = "File Upload failed, Please try again!!";
+                 Logger.LogError(ex, "Upload failed for {FileName}", file.Name);
+                 warningMessage = $"Upload failed: {ex.Message}";
             }
         }
 
