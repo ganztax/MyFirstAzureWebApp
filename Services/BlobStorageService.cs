@@ -18,10 +18,16 @@ public class BlobStorageService : IBlobStorageService
     }
     public async Task<string> UploadFileToBlobAsync(string fileName, string contentType, Stream fileStream)
     {
+            _logger.LogInformation("UploadFileToBlobAsync called for {FileName}", fileName);
+            _logger.LogInformation("Connection string is: {ConnStr}", 
+                string.IsNullOrEmpty(blobStorageConnectionString) ? "EMPTY" : "SET");
         try
         {
+            _logger.LogInformation("Creating container client...");
             var container = new BlobContainerClient(blobStorageConnectionString, blobContainerName);
+            _logger.LogInformation("Container client created, calling CreateIfNotExistsAsync...");
             var createResponse = await container.CreateIfNotExistsAsync();
+            _logger.LogInformation("Container created/exists");
             if (createResponse != null && createResponse.GetRawResponse().Status == 201)
                 await container.SetAccessPolicyAsync(PublicAccessType.Blob);
             var blobClient = container.GetBlobClient(fileName);
