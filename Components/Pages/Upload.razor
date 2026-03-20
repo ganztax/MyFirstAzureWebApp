@@ -99,11 +99,17 @@
         displayMessage = "";
 
         foreach (var file in selectedFiles)
-        {
+        { 
+            if (file.Size > maxFileSize)
+            {
+                    warningMessage += $"File {file.Name} exceeds the maximum allowed size of 20MB.";
+                    continue;
+            }
             try
             {
                 var trustedFileNameForFileStorage = file.Name;
                 var blobUrl = await BlobStorageService.UploadFileToBlobAsync(trustedFileNameForFileStorage, file.ContentType, file.OpenReadStream(20971520));
+               
                 if (blobUrl != null)
                 {
                     FileUploadViewModel fileUploadViewModel = new FileUploadViewModel()
